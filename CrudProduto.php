@@ -80,7 +80,7 @@ class CrudProduto {
 
 
 	public function delete(int $id){
-
+		//sei que não precisa validar. 
 		$id = filter_var($id, FILTER_VALIDATE_INT);
 
 		if($id === 0 && !is_int($id) && $id <= 0 && !$id){
@@ -103,6 +103,7 @@ class CrudProduto {
 
 
 	public function update(){
+		//sei que não precisa validar. 		
 		$id = filter_var($this->produto->getIdProduto(), FILTER_VALIDATE_INT);
 		if($id === 0 && !is_int($id) && $id <= 0 && !$id){
 			return false;
@@ -154,5 +155,25 @@ class CrudProduto {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+
+
+	public function find(int $id){
+		//sei que não precisa validar. 
+		$id = filter_var($id, FILTER_VALIDATE_INT);
+		$sql = "SELECT * FROM `produto` where id_produto = :id";
+
+		$stmt = $this->banco->prepare($sql);
+		$stmt->bindValue(':id', $id);
+		$resultado = $stmt->execute();
+		if(!$resultado){
+			echo "<pre>";
+				print_r($stmt->errorInfo());
+			echo "<;pre>";
+			return false;
+		} else {
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		}
+
+	}
 
 }

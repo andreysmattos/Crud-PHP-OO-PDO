@@ -27,7 +27,8 @@ $crud = new CrudProduto($conn, $produto1);
 
 //$crud->update();
 
-print_r($crud->list());
+//print_r($crud->list());
 
+print_r($crud->find(233));
 
 echo "</pre>";
