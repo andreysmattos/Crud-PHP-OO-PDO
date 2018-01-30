@@ -4,9 +4,12 @@
 require_once "Banco.php";
 require_once "Produto.php";
 require_once "CrudProduto.php";
+require_once "Container.php";
 
 
-$conn = new Banco('localhost', 'loja_paulo', 'root', '');
+$conn = Container::getBanco();
+
+
 
 
 $produto1 = new Produto;
@@ -18,7 +21,9 @@ echo "<pre>";
 	//print_r($produto1);
 
 
+
 $crud = new CrudProduto($conn, $produto1);
+//print_r($crud);
 
 //$crud->save();
 
@@ -29,6 +34,6 @@ $crud = new CrudProduto($conn, $produto1);
 
 //print_r($crud->list());
 
-print_r($crud->find(233));
+print_r($crud->find(23131));
 
 echo "</pre>";
